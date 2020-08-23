@@ -6,8 +6,8 @@
 #include <stack>
 #if ( (defined(__MACH__)) && (defined(__APPLE__)) )   
 #include <GLUT/glut.h>  
-#else   
-#include <GL/glut.h>  
+#else 
+#include <GL/glut.h>
 #endif
 
 std::string commands;
@@ -78,8 +78,20 @@ void interpretCode(void)
         }
         case '/':
         {
-            glBegin(GL_TRIANGLES);					
-                glColor3f((*(dataPtr + 1)),(*(dataPtr + 2)), (*(dataPtr + 3)));			
+            glBegin(GL_TRIANGLES);	
+                if((*dataPtr) == 1) {
+                    glColor3f(1.0f, 0.0f, 0.0f);
+                }
+                else if((*dataPtr) == 2) {
+                    glColor3f(0.0f, 1.0f, 0.0f);
+                }		
+                else if((*dataPtr) == 3) {
+                    glColor3f(0.0f, 0.0f, 1.0f);
+                }	
+		else if((*dataPtr) == 4) {
+                    glColor3f(1.0f, 1.0f, 1.0f);
+                }
+                //glColor3f((*(dataPtr + 2)),(*(dataPtr + 1)), (*(dataPtr + 3)));			
                 glVertex3f( 0.0f, (*dataPtr), 0.0f);				
                 glVertex3f(-(*dataPtr),-(*dataPtr), 0.0f);		
                 glVertex3f( (*dataPtr), -(*dataPtr), 0.0f);		
