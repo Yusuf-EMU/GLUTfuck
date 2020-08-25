@@ -67,28 +67,21 @@ void interpretCode(void)
         }
         case '.':
         {
-            std::cout << char(*dataPtr);
-            break;
+            glutSolidCube(*dataPtr);
         }
         case ',':
         {
-            char input;
-            std::cin >> input;
-            *dataPtr = input;
-        }
-        case '/':
-        {
             glBegin(GL_TRIANGLES);	
-                if((*dataPtr) == 1) {
+                if((*(dataPtr + 1)) == 1) {
                     glColor3f(1.0f, 0.0f, 0.0f);
                 }
-                else if((*dataPtr) == 2) {
+                else if((*(dataPtr + 1)) == 2) {
                     glColor3f(0.0f, 1.0f, 0.0f);
                 }		
-                else if((*dataPtr) == 3) {
+                else if((*(dataPtr + 1)) == 3) {
                     glColor3f(0.0f, 0.0f, 1.0f);
                 }	
-		else if((*dataPtr) == 4) {
+		        else if((*(dataPtr + 1)) == 4) {
                     glColor3f(1.0f, 1.0f, 1.0f);
                 }
                 //glColor3f((*(dataPtr + 2)),(*(dataPtr + 1)), (*(dataPtr + 3)));			
