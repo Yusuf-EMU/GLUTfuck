@@ -11,4 +11,5 @@ Compile & Run
 
     ./bf-interpreter input.bf
 
-I added one extra command with more to come to draw a triange "/" with the current cell being the size (add the next cell being the color value NOTE:ITS BROKEN)
+Use ',' to draw a triange with the current cell being the size (add the next cell being the color value NOTE:ITS BROKEN)
+Use '.' to draw a cube with the current cell being the size.
