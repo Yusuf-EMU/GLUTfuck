@@ -7,7 +7,7 @@ To run this you need GLUT + Opengl
 Compile & Run
 -------------
 
-    g++ bf-interpreter.cpp -std=c++11 -o bf-interpreter
+    g++ main.cpp -std=c++11 -framework GLUT -framework OpenGL  -omain
 
     ./bf-interpreter input.bf
 
