@@ -4,6 +4,9 @@
 #include <vector>
 #include <string>
 #include <stack>
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+#include <windows.h>
+#endif
 #if ( (defined(__MACH__)) && (defined(__APPLE__)) )   
 #include <GLUT/glut.h>  
 #else 
