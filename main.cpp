@@ -12,7 +12,6 @@
 #else 
 #include <GL/glut.h>
 #endif
-
 std::string commands;
 
 std::string inputFile(const std::string& filename)
@@ -32,6 +31,7 @@ std::string inputFile(const std::string& filename)
 
 void interpretCode(void)
 {
+    float dpp;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		     // Clear Screen and Depth Buffer
 	glLoadIdentity();
     std::vector<int> data(1, 0);
@@ -70,10 +70,11 @@ void interpretCode(void)
         }
         case '.':
         {
-            glutSolidCube(*dataPtr);
+            glutSwapBuffers();
         }
         case ',':
         {
+            dpp = (*dataPtr);
             glBegin(GL_TRIANGLES);	
                 if((*(dataPtr + 1)) == 1) {
                     glColor3f(1.0f, 0.0f, 0.0f);
@@ -88,16 +89,17 @@ void interpretCode(void)
                     glColor3f(1.0f, 1.0f, 1.0f);
                 }
                 //glColor3f((*(dataPtr + 2)),(*(dataPtr + 1)), (*(dataPtr + 3)));			
-                glVertex3f( 0.0f, (*dataPtr), 0.0f);				
-                glVertex3f(-(*dataPtr),-(*dataPtr), 0.0f);		
-                glVertex3f( (*dataPtr), -(*dataPtr), 0.0f);		
+                glVertex3f( 0.0f, dpp, 0.0f);				
+                glVertex3f(-dpp,-dpp, 0.0f);		
+                glVertex3f( dpp, -dpp, 0.0f);		
             glEnd();
         }
         case '[':
         {
+            dpp = (*dataPtr);
             instructionStack.push(instructionPtr);
 
-            if (*dataPtr == 0)
+            if (dpp == 0)
             {
                 auto startInstructionPtr = instructionPtr;
                 while (++instructionPtr != commands.end())
@@ -137,10 +139,6 @@ void interpretCode(void)
 
         instructionPtr++;
     }
-
-    if (!instructionStack.empty())
-        //throw std::runtime_error("Found a '[' that did not have a matching ']'!");
-    glutSwapBuffers();
 }
 
 void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integer
@@ -177,7 +175,6 @@ int main(int argc, char* argv[])
         commands = inputFile(argv[1]);
         // register callbacks
 	    glutDisplayFunc(interpretCode);
-        //interpretCode();
     }
     catch (const std::exception& e)
     {
