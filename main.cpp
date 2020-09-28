@@ -1,3 +1,7 @@
+//The base code is from texus(https://github.com/texus/Brainfuck-interpreter) 
+//I just added GLUT functionallity To run this you need GLUT + Opengl
+//to compile use g++ main.cpp -std=c++11 -framework GLUT -framework OpenGL  -obf-interpreter -O1 in the terminal
+//and to run use ./bf-interpreter input.bf in the terminal
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
